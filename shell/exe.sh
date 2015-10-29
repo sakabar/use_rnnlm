@@ -16,6 +16,12 @@ if [ ! -e data/changed.txt ]; then
   exit 1
 fi
 
+if [ ! -e model10000k/model ]; then
+  echo "Not found: model"
+  echo "execute shell/setup.sh"
+  exit 1
+fi
+
 #分かち書きの後、<unk>を置換してテストデータ作成
 files=("data/orig.txt" "data/changed.txt")
 for f in $files; do
