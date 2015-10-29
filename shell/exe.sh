@@ -40,11 +40,11 @@ done
 #RNNLMでテスト
 testfiles=("$outputdir/testdata/orig.jumanwakati" "$outputdir/testdata/changed.jumanwakati")
 for f in $testfiles; do
-  shell/test.sh $f
+  shell/test.sh $f $outputdir
 done
 
 #結果を1つのファイルに結合
-paste -d '\t' $outputdir/result/orig.result $outputdir/result/changed.result| awk -F'\t' '{print $0"\t"$4/$2}' > $outputdir/result/result.txt
+paste -d '\t' $outputdir/result/orig.result $outputdir/result/changed.result| awk -F'\t' '{print $0"\t"$4-$2}' > $outputdir/result/result.txt
 
 #結果を整形
 ./shell/show_result.sh $outputdir/result/result.txt > $outputdir/result/result.format.txt
